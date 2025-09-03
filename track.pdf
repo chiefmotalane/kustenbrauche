@@ -1,0 +1,121 @@
+Got you chief 👊 I see what happened — you want that **structured, step-by-step plan** again, but one that covers *both sides*:
+
+1. **Website development (self-built, GitHub setup, deploy, etc.)**
+2. **Instagram marketing (3-day teaser build-up → final reveal)**
+
+And since you’ve already done HTML/CSS/JS basics (not pro yet, but comfortable editing), I’ll make the plan *beginner-friendly but real-world*, so you can both practice coding **and** pull off this Bugatti/Mansory-style launch.
+
+---
+
+## 🔥 Master Plan (Today → Launch)
+
+We’ll split into **Website** track and **Instagram** track.
+Launch target: **Tuesday Sep 2, 2025** (so today Fri → Tue = 4 days).
+
+---
+
+### 1. Website Development Plan
+
+*(We’ll do it properly — your own site, no Wix)*
+
+#### Step 1 — Set up GitHub & Project (Today, Fri)
+
+* Install [Git](https://git-scm.com/downloads) if you don’t have it.
+* Create a GitHub account (if not yet).
+* In VS Code:
+
+  ```bash
+  git init
+  git branch -M main
+  git add .
+  git commit -m "Initial commit"
+  git remote add origin https://github.com/<your-username>/<repo-name>.git
+  git push -u origin main
+  ```
+* Repo is live. This is your “source of truth.”
+
+#### Step 2 — Code base (Sat)
+
+* Use the **template** I gave you (hero + countdown + gallery + about + collab + contact).
+* Replace text + images (your 6 liveries, hero, og preview).
+* Set your **launch date** inside `LAUNCH_DATE` in the script.
+* Test locally: open `index.html` in browser.
+
+#### Step 3 — Deploy (Sun)
+
+* Use **Netlify** (super easy + free + contact forms work).
+* Steps:
+
+  * Sign up on [Netlify](https://www.netlify.com/).
+  * “New Site → From Git → Connect GitHub → Choose repo.”
+  * Done. You get a free subdomain like `coastcustoms.netlify.app`.
+* Check the site on phone + desktop.
+
+#### Step 4 — Polish (Mon)
+
+* Mobile responsive test.
+* SEO: update `<meta>` tags (title, description, OG image).
+* Add Instagram & email links in footer.
+* (Optional) Custom domain if you want (like `coastcustoms.xyz`).
+
+---
+
+### 2. Instagram Teaser Plan
+
+*(3-day drip, like Bugatti / Mansory pre-release)*
+
+#### Sat (Aug 30) — **Teaser 1 (Mystery vibe)**
+
+* Story & Feed: Close-up detail shot (headlight, carbon, spoiler) with text:
+
+  * Story text: *“A new era of liveries is coming.”*
+  * Feed caption: *“Coast Customs presents something new… Stay tuned.”*
+* No mention of how many liveries. Just mystery.
+
+#### Sun (Aug 31) — **Teaser 2 (Collection hint)**
+
+* Story: silhouette image / blurred full car shot.
+* Feed: Carousel of 2–3 cropped shots.
+* Caption: *“6 designs. Inspired by Mansory, Bugatti, and more. Launching Sept 2.”*
+* Add **Countdown sticker** in story.
+
+#### Mon (Sep 1) — **Teaser 3 (Collab hype)**
+
+* Story & Feed: Reveal collab with Hellcat creator.
+* Caption: *“Collab preview: \[CreatorName] x Coast Customs. The Hellcat edition.”*
+* This builds trust + hype from their audience.
+
+#### Tue (Sep 2) — **Main Drop (Full launch)**
+
+* Feed: Post carousel with hero shots of all 6 designs.
+* Caption: *“The collection is live. Explore full gallery → link in bio.”*
+* Story: 15s reel with cinematic shots + “LIVE NOW.”
+* Collab creators post at same time.
+
+---
+
+### 3. Learning Support While Doing This
+
+Since you’re still getting comfortable with HTML/CSS/JS:
+
+* You’ll **learn by editing the template** instead of building from scratch.
+* As you swap images, tweak text, and test the countdown, you’ll practice:
+
+  * Updating `<img>` and `<div>` structure (HTML)
+  * Adjusting colors, sizes, spacing (CSS)
+  * Playing with countdown script (JS)
+* By launch, you’ll be way more comfortable editing a *real* project.
+
+---
+
+## 🚀 Recap Timeline
+
+* **Fri (Today)** → Set up GitHub, prep images, copy.
+* **Sat** → Edit site content + Post Teaser 1.
+* **Sun** → Deploy on Netlify + Post Teaser 2.
+* **Mon** → Polish site + Post Teaser 3 (collab).
+* **Tue** → Launch post, collabs go live, site traffic in.
+
+---
+
+Do you want me to **expand this into a “daily checklist” with exact copy-paste commands** (like Git commands, Netlify steps, Instagram caption text), so you can literally follow it like a script?
