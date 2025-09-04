@@ -119,3 +119,161 @@ footer{background:#000;color:#fff;text-align:center;padding:32px}
   .nav-toggle{display:block}
   .navbar.open .nav-links{display:flex}
 }
+/* Banner (page top for designs page) */
+.banner {
+  text-align: center;
+  padding: 4rem 1rem;
+  background: linear-gradient(180deg, #111 0%, #000 100%);
+  color: #fff;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.page-subtitle {
+  font-size: 1.2rem;
+  color: #aaa;
+}
+
+/* Models grid (Designs page) */
+.models-grid-page {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+  padding: 2rem;
+}
+
+.model-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #111;
+  transition: transform 0.3s ease;
+}
+
+.model-card img {
+  width: 100%;
+  display: block;
+  filter: brightness(0.8);
+  transition: transform 0.5s ease;
+}
+
+.model-card:hover img {
+  transform: scale(1.05);
+}
+
+.model-info {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  color: #fff;
+}
+
+.model-info h2 {
+  margin: 0 0 0.5rem 0;
+}
+
+.learn-more {
+  background: transparent;
+  border: 2px solid #fff;
+  padding: 0.5rem 1.2rem;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.learn-more:hover {
+  background: #fff;
+  color: #000;
+}
+
+/* Responsive grid */
+@media (min-width: 768px) {
+  .models-grid-page {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .models-grid-page {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+/* About page hero */
+.about-hero {
+  position: relative;
+  height: 80vh;
+  background: url("images/about-banner.jpg") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+.about-hero .overlay {
+  position:absolute; inset:0; background:rgba(0,0,0,0.5);
+}
+.about-hero .hero-content {
+  position: relative;
+  max-width: 800px;
+  text-align: center;
+}
+.about-hero h1 {
+  font-size: clamp(3rem, 6vw, 5rem);
+  margin-bottom: 0.5rem;
+}
+.about-hero p {
+  font-size: 1.3rem;
+  opacity: 0.9;
+}
+
+/* About story & philosophy sections */
+.about-section {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 80px 20px;
+  background: #111;
+  color: #eaeaea;
+}
+.about-section.alt { background: #1a1a1a; }
+.about-img, .about-text {
+  flex: 1 1 300px;
+  padding: 20px;
+}
+.about-img img {
+  max-width: 100%;
+  border-radius: 8px;
+  object-fit: cover;
+}
+.about-text h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: #e60000;
+}
+.about-text p {
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+.about-text ul {
+  list-style: none;
+  padding-left: 0;
+}
+.about-text ul li {
+  position: relative;
+  padding-left: 1.5em;
+  margin-bottom: 8px;
+}
+.about-text ul li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #e60000;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .about-section {
+    flex-direction: column;
+  }
+}

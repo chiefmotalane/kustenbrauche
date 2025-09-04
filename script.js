@@ -94,3 +94,26 @@ form.addEventListener('submit', (e) => {
   // quick UX: close after short delay
   setTimeout(() => modal.close(), 1600);
 });
+// Learn More popup placeholder
+document.querySelectorAll('.learn-more').forEach(btn => {
+  btn.addEventListener('click', () => {
+    alert(`Details coming soon for ${btn.previousElementSibling.textContent}`);
+  });
+});
+// Fade-in sections on scroll
+const faders = document.querySelectorAll('.about-section');
+const options = { threshold: 0.2 };
+
+const appearOnScroll = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('fade-in');
+      observer.unobserve(entry.target);
+    }
+  });
+}, options);
+
+faders.forEach(section => {
+  section.classList.add('fade');
+  appearOnScroll.observe(section);
+});
