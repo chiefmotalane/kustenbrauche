@@ -1,0 +1,24 @@
+{
+  "name": "kustenbrauche-site",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@supabase/supabase-js": "^2.57.2"
+  },
+  "description": "",
+  "main": "championship.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chiefmotalane/kustenbrauche.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chiefmotalane/kustenbrauche/issues"
+  },
+  "homepage": "https://github.com/chiefmotalane/kustenbrauche#readme"
+}
