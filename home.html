@@ -14,13 +14,13 @@
 </head>
 <body>
 
-  <!-- NAVBAR (transparent over hero) -->
+  <!-- Navbar transparent over hero -->
   <nav class="navbar">
     <div class="nav-left">
-      <a href="#" class="brand">KUSTENBRAUCHE</a>
+      <a href="#" class="brand">ㄷㄷㄷ</a>
     </div>
 
-    <!-- CENTER: F1 next race ticker with logos + countdown -->
+    <!-- centered panel with ccc,f1 logo   and count down-->
     <div class="race-ticker" aria-live="polite">
       <img src="images/f1.png" alt="F1" class="race-logo" />
       <div class="race-count">
@@ -35,13 +35,13 @@
       <li><a href="home.html">Home</a></li>
       <li><a href="designs.html">Designs</a></li>
       <li><a href="about.html">About</a></li>
-      <li><a href="#events">F1 Events</a></li>
+      <li><a href="#events">F1 CPM</a></li>
       <li><a href="#collab">Collaborations</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
 
-  <!-- HERO -->
+  <!-- Hero -->
   <section id="home" class="hero" role="banner">
     <div class="overlay"></div>
     <div class="hero-content">
@@ -53,6 +53,58 @@
         <span class="label">Collection drops in</span>
         <strong id="dropCountdown">--d --h --m --s</strong>
       </div>
+    </div>
+  </section>
+    <!-- UPCOMING F1 EVENTS -->
+  <section id="events" class="section">
+    <div class="section-top">
+      <h2>UPCOMING F1 EVENTS</h2>
+      <a href="#" class="see-all">See all</a>
+    </div>
+
+    <div class="event-strip" id="eventStrip" tabindex="0" aria-label="Upcoming F1 Events (scrollable)">
+      <!-- Example card -->
+      <article class="event-card">
+        <img src="images/E1.png" alt="Italian Grand Prix" class="event-img">
+        <div class="event-meta">
+          <h3>Italian Grand Prix</h3>
+          <p class="event-date">SUN, Sep 14, 17:00</p>
+          <p class="event-venue">CPM Tropics</p>
+          <button class="ticket-btn" data-event="Italian Grand Prix">Ticket</button>
+        </div>
+      </article>
+
+      <article class="event-card">
+        <img src="images/E5.png" alt="Japanese Grand Prix" class="event-img">
+        <div class="event-meta">
+          <h3>Azerbaijan Grand Prix</h3>
+          <p class="event-date">Sun, Sep 21, 17:00</p>
+          <p class="event-venue">Not Confirmed</p>
+          <button class="ticket-btn" data-event="Japanese Grand Prix">Ticket</button>
+        </div>
+      </article>
+
+      <article class="event-card">
+        <img src="images/E2.png" alt="Las Vegas Grand Prix" class="event-img">
+        <div class="event-meta">
+          <h3>Singapore Grand Prix</h3>
+          <p class="event-date">Sun, Oct 05, 17:00</p>
+          <p class="event-venue">Not Confirmed</p>
+          <button class="ticket-btn" data-event="Las Vegas Grand Prix">Ticket</button>
+        </div>
+      </article>
+
+      <article class="event-card">
+        <img src="images/E3.png" alt="Saudi Arabian Grand Prix" class="event-img">
+        <div class="event-meta">
+          <h3>USA Grand Prix</h3>
+          <p class="event-date">Sun, Oct 19, 17:00</p>
+          <p class="event-venue">Not Confirmed</p>
+          <button class="ticket-btn" data-event="Saudi Arabian Grand Prix">Ticket</button>
+        </div>
+      </article>
+
+      <!-- add more cards as you like -->
     </div>
   </section>
 
@@ -75,58 +127,7 @@
     </div>
   </section>
 
-  <!-- UPCOMING F1 EVENTS (Spotify-style horizontal cards) -->
-  <section id="events" class="section">
-    <div class="section-top">
-      <h2>Live events near you</h2>
-      <a href="#" class="see-all">See all</a>
-    </div>
 
-    <div class="event-strip" id="eventStrip" tabindex="0" aria-label="Upcoming F1 Events (scrollable)">
-      <!-- Example card -->
-      <article class="event-card">
-        <img src="images/E1.png" alt="Italian Grand Prix" class="event-img">
-        <div class="event-meta">
-          <h3>Italian Grand Prix</h3>
-          <p class="event-date">Sat, Oct 11, 20:30</p>
-          <p class="event-venue">Monza, Italy</p>
-          <button class="ticket-btn" data-event="Italian Grand Prix">Ticket</button>
-        </div>
-      </article>
-
-      <article class="event-card">
-        <img src="images/E5.png" alt="Japanese Grand Prix" class="event-img">
-        <div class="event-meta">
-          <h3>Japanese Grand Prix</h3>
-          <p class="event-date">Sun, Oct 19, 15:00</p>
-          <p class="event-venue">Suzuka, Japan</p>
-          <button class="ticket-btn" data-event="Japanese Grand Prix">Ticket</button>
-        </div>
-      </article>
-
-      <article class="event-card">
-        <img src="images/E2.png" alt="Las Vegas Grand Prix" class="event-img">
-        <div class="event-meta">
-          <h3>Las Vegas Grand Prix</h3>
-          <p class="event-date">Sat, Nov 22, 21:00</p>
-          <p class="event-venue">Las Vegas, USA</p>
-          <button class="ticket-btn" data-event="Las Vegas Grand Prix">Ticket</button>
-        </div>
-      </article>
-
-      <article class="event-card">
-        <img src="images/E3.png" alt="Saudi Arabian Grand Prix" class="event-img">
-        <div class="event-meta">
-          <h3>Saudi Arabian Grand Prix</h3>
-          <p class="event-date">Sat, Dec 6, 19:30</p>
-          <p class="event-venue">Jeddah, KSA</p>
-          <button class="ticket-btn" data-event="Saudi Arabian Grand Prix">Ticket</button>
-        </div>
-      </article>
-
-      <!-- add more cards as you like -->
-    </div>
-  </section>
 
   <!-- ABOUT -->
   <section id="about" class="section dark">

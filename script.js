@@ -9,17 +9,17 @@ document.querySelector('.nav-toggle').addEventListener('click', () => {
 const raceNameEl = document.getElementById('raceName');
 const raceCountdownEl = document.getElementById('raceCountdown');
 
-// EDIT this when you know the real next race datetime:
+// Next race datetime:
 const nextRace = {
   name: 'Italian GP',
-  // YYYY-MM-DDTHH:MM:SS with timezone if you want: +02:00
-  when: '2025-10-11T20:30:00'
+// countdown
+  when: '2025-09-14T20:30:00'
 };
 raceNameEl.textContent = `Next: ${nextRace.name}`;
 startCountdown(new Date(nextRace.when).getTime(), raceCountdownEl);
 
-// 2) Banner drop countdown
-const dropDate = '2025-09-03T18:00:00'; // change anytime
+//Drop countdown
+const dropDate = '2025-09-12T18:00:00'; // droping time
 startCountdown(new Date(dropDate).getTime(), document.getElementById('dropCountdown'));
 
 function startCountdown(targetMs, el) {
@@ -35,7 +35,7 @@ function startCountdown(targetMs, el) {
   }, 1000);
 }
 
-/* ====== EVENTS STRIP (auto-scroll + manual) ====== */
+// Events cards
 const strip = document.getElementById('eventStrip');
 let autoScroll;
 function startAutoScroll() {
