@@ -2,12 +2,13 @@ const { createClient } = require('@supabase/supabase-js');
 
 exports.handler = async (event, context) => {
   const supabaseUrl = process.env.SUPABASE_URL;
-  const supabaseKey = process.env.SUPABASE_KEY;
+  const supabaseKey = process.env.SUPABASE_KEY; // secure key
 
   const supabase = createClient(supabaseUrl, supabaseKey);
 
-  // Example: Fetch data from a "cars" table
-  let { data, error } = await supabase.from('cars').select('*');
+  const { data, error } = await supabase
+    .from('drivers')
+    .select(`id, name, image_url, team:teams(name, logo_url)`);
 
   if (error) {
     return {
