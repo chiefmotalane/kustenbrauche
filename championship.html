@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="championship.css" />
 </head>
 <body>
+  <!-- Navigation -->
   <nav class="cb-nav">
     <a href="home.html" class="brand">ㄷㄷㄷ</a>
     <div class="nav-center">
@@ -55,53 +56,4 @@
       <div class="table-wrap">
         <table id="standingsTable" class="table">
           <thead>
-            <tr><th>#</th><th>Driver</th><th>Team</th><th>Points</th></tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- 4) Live race panel (admin controls + live lap table) -->
-    <section class="live card">
-      <div class="section-head">
-        <h3>Live Race Panel <small id="liveHint">(Visible only on race day)</small></h3>
-        <div class="live-controls">
-          <label><input type="checkbox" id="liveMode"> Enable Live Mode</label>
-        </div>
-      </div>
-
-      <div id="adminPanel" class="admin-panel hidden">
-        <div class="admin-left">
-          <h4>Drivers (press to log a pass)</h4>
-          <div id="driverButtons" class="driver-buttons"></div>
-        </div>
-        <div class="admin-right">
-          <h4>Live Standings / Laps</h4>
-          <div class="table-wrap">
-            <table id="liveTable" class="table">
-              <thead><tr><th>Pos</th><th>Driver</th><th>Best Lap</th><th>Laps</th></tr></thead>
-              <tbody></tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-      <section>
-  <h2>Teams</h2>
-  <div id="teams"></div>
-</section>
-
-<section>
-  <h2>Drivers</h2>
-  <div id="drivers"></div>
-</section>
-
-
-      <p class="note">Admin: toggling <em>Live Mode</em> shows the panel. Logging is sent to the database (or local store if offline).</p>
-    </section>
-
-  </main>
-
-  <script src="championship.js"></script>
-</body>
-</html>
+            <tr><th>#</th><th>Driver</t
