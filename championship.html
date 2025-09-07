@@ -45,7 +45,17 @@
       <div id="teamsStrip" class="teams-strip" tabindex="0" aria-label="Teams strip"></div>
     </section>
 
-    <!-- 3) Drivers standings (points table) -->
+    <!-- 3) Drivers list -->
+    <section class="drivers card">
+      <div class="section-head">
+        <h3>Drivers</h3>
+      </div>
+      <div id="drivers-list" class="drivers-grid">
+        <!-- Driver cards will be injected here by JS -->
+      </div>
+    </section>
+
+    <!-- 4) Drivers standings (points table) -->
     <section class="standings card">
       <div class="section-head">
         <h3>Drivers Championship</h3>
@@ -56,4 +66,22 @@
       <div class="table-wrap">
         <table id="standingsTable" class="table">
           <thead>
-            <tr><th>#</th><th>Driver</t
+            <tr>
+              <th>#</th>
+              <th>Driver</th>
+              <th>Team</th>
+              <th>Points</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- standings rows go here -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- Scripts -->
+  <script src="championship.js" type="module"></script>
+</body>
+</html>

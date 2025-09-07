@@ -2,7 +2,7 @@ const { createClient } = require('@supabase/supabase-js');
 
 exports.handler = async (event, context) => {
   const supabaseUrl = process.env.SUPABASE_URL;
-  const supabaseKey = process.env.SUPABASE_KEY; // secure key
+  const supabaseKey = process.env.SUPABASE_ANON_KEY; // match Netlify var name
 
   const supabase = createClient(supabaseUrl, supabaseKey);
 
