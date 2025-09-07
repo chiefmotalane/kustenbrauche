@@ -5,7 +5,31 @@ body {
   color: #222;
 }
 
-/* Navigation */
+/* Gradient Header */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, #000 0%, #444 100%);
+  color: white;
+  padding: 1rem;
+}
+.page-header h2 {
+  margin: 0;
+}
+.page-header span {
+  font-size: 0.9rem;
+  color: #ddd;
+}
+.f1-logo {
+  width: 60px;
+  margin-right: 12px;
+}
+.sponsor-logo {
+  height: 40px;
+}
+
+/* Nav */
 .cb-nav {
   display: flex;
   justify-content: space-between;
@@ -19,14 +43,14 @@ body {
   color: white;
   text-decoration: none;
 }
-.cb-nav .nav-center {
-  text-align: center;
+.cb-nav .race-short strong {
+  font-size: 1rem;
 }
 .cb-nav .nav-right {
   font-size: 0.85rem;
 }
 
-/* Container & card */
+/* Container */
 .container {
   max-width: 900px;
   margin: 1rem auto;
@@ -40,41 +64,26 @@ body {
   overflow: hidden;
 }
 
-/* Gradient header */
-.standings-header {
-  background: linear-gradient(90deg, #000 0%, #444 100%);
-  color: white;
+/* Race overview */
+.race-overview {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
   padding: 1rem;
 }
-.standings-header .season-brand h2 {
-  margin: 0;
-  font-size: 1.5rem;
-}
-.standings-header .season-brand span {
-  font-size: 0.9rem;
-  color: #ddd;
+.race-overview img {
+  max-width: 240px;
+  border-radius: 8px;
 }
 
-/* Race meta */
-.race-meta {
-  padding: 1rem;
-  border-bottom: 1px solid #eee;
+/* Results */
+.results-header {
+  display: grid;
+  grid-template-columns: 40px 1fr 1fr 60px;
+  background: #eee;
+  font-weight: bold;
+  padding: 0.6rem 1rem;
 }
-.race-meta h3 {
-  margin: 0 0 0.5rem 0;
-}
-.race-meta ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  font-size: 0.9rem;
-  color: #666;
-}
-.race-meta ul li {
-  margin: 0.2rem 0;
-}
-
-/* Results list */
 .results-list {
   display: flex;
   flex-direction: column;
@@ -86,27 +95,25 @@ body {
   padding: 0.8rem 1rem;
   border-bottom: 1px solid #eee;
 }
-.result-row img.driver-pic {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  margin-right: 0.5rem;
-}
-.result-row img.team-logo {
-  width: 20px;
-  height: 20px;
-  margin-left: 0.5rem;
-}
 .result-driver {
   display: flex;
   align-items: center;
   font-weight: 600;
 }
+.result-driver img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
 .result-team {
   display: flex;
   align-items: center;
-  font-size: 0.9rem;
-  color: #555;
+}
+.result-team img {
+  width: 20px;
+  height: 20px;
+  margin-left: 6px;
 }
 .result-points {
   text-align: right;

@@ -7,41 +7,65 @@
   <link rel="stylesheet" href="championship.css" />
 </head>
 <body>
+  <!-- Gradient Header -->
+  <header class="page-header">
+    <div class="header-left">
+      <img src="images/f1.png" alt="F1 Logo" class="f1-logo">
+      <div>
+        <h2>Formula 1</h2>
+        <span>2025 Season</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <img src="images/ccc.png" alt="Sponsor Logo" class="sponsor-logo">
+    </div>
+  </header>
+
   <!-- Navigation -->
   <nav class="cb-nav">
     <a href="home.html" class="brand">ㄷㄷㄷ</a>
     <div class="nav-center">
       <div class="race-short">
         <strong id="eventName">Italian Grand Prix</strong>
-        <div id="raceDate">Sun, Sep 7, 15:00 SAST</div>
+        <div id="raceDate">Sun, Sep 12, 15:00 SAST</div>
       </div>
     </div>
     <div class="nav-right">
-      <div id="raceStatus">Status: <span id="statusText">FORTHCOMING</span></div>
+      <div id="countdown">Race starts in: <span id="countdownTimer"></span></div>
     </div>
   </nav>
 
   <main class="container">
-    <!-- Standings / Results -->
-    <section class="standings card">
-      <div class="standings-header">
-        <div class="season-brand">
-          <h2>Formula 1</h2>
-          <span>2025 Season</span>
-        </div>
-      </div>
-
-      <div class="race-meta">
+    <!-- Race overview with track -->
+    <section class="race-overview card">
+      <div class="overview-left">
         <h3 id="raceTitle">Italian Grand Prix</h3>
-        <ul>
+        <ul class="meta">
           <li id="raceDateFull">Sun, Sep 7, 15:00 SAST</li>
           <li id="raceVenue">Autodromo Nazionale Monza, Monza</li>
           <li id="raceLaps">53 Laps</li>
         </ul>
       </div>
+      <div class="overview-right">
+        <img id="circuitMap" src="images/map.jpg" alt="Circuit Map">
+      </div>
+    </section>
+
+    <!-- Standings -->
+    <section class="standings card">
+      <div class="section-head">
+        <h3>Drivers Championship</h3>
+      </div>
+
+      <div class="results-header">
+        <div>#</div>
+        <div>Driver</div>
+        <div>Team</div>
+        <div>Points</div>
+      </div>
 
       <div class="results-list" id="resultsList">
-        <!-- Results rows injected by JS -->
+        <!-- Injected via JS -->
       </div>
     </section>
   </main>
