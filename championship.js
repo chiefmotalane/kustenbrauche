@@ -5,7 +5,9 @@ const supabaseUrl = "https://theghmkzfbwpogubhcnx.supabase.co"
 const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRoZWdobWt6ZmJ3cG9ndWJoY254Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTcwMjI4NDgsImV4cCI6MjA3MjU5ODg0OH0.EuFc9K4kJp0BjjX5G1kLmLM1pHfg9g-bmjyd9qTTWl0"
 const supabase = createClient(supabaseUrl, supabaseKey)
 
-// Fetch drivers with team info
+console.log("✅ championship.js loaded")
+
+// Load drivers
 async function loadDrivers() {
   const { data, error } = await supabase
     .from('drivers')
@@ -20,9 +22,11 @@ async function loadDrivers() {
     `)
 
   if (error) {
-    console.error("Error loading drivers:", error)
+    console.error("❌ Error loading drivers:", error)
     return
   }
+
+  console.log("🎯 Drivers:", data)
 
   const container = document.getElementById("drivers-list")
   container.innerHTML = ""
@@ -40,5 +44,81 @@ async function loadDrivers() {
   })
 }
 
+// Load standings
+async function loadStandings() {
+  const { data: results, error: resultsError } = await supabase
+    .from("results")  // ✅ correct table name
+    .select("driver_id, points")
+
+  if (resultsError) {
+    console.error("❌ Error loading results:", resultsError)
+    return
+  }
+
+  console.log("🎯 Results:", results)
+
+  // Fetch drivers with teams
+  const { data: drivers, error: driversError } = await supabase
+    .from("drivers")
+    .select("id, name, team_id")
+
+  if (driversError) {
+    console.error("❌ Error loading drivers:", driversError)
+    return
+  }
+
+  console.log("🎯 Drivers:", drivers)
+
+  const { data: teams, error: teamsError } = await supabase
+    .from("teams")
+    .select("id, name")
+
+  if (teamsError) {
+    console.error("❌ Error loading teams:", teamsError)
+    return
+  }
+
+  console.log("🎯 Teams:", teams)
+
+  // Merge points
+  const standingsMap = {}
+  results.forEach(r => {
+    if (!standingsMap[r.driver_id]) standingsMap[r.driver_id] = 0
+    standingsMap[r.driver_id] += r.points
+  })
+
+  const standings = drivers.map(d => {
+    return {
+      id: d.id,
+      name: d.name,
+      team: teams.find(t => t.id === d.team_id)?.name || "No Team",
+      points: standingsMap[d.id] || 0
+    }
+  })
+
+  // Sort by points
+  standings.sort((a, b) => b.points - a.points)
+
+  console.log("📊 Final standings:", standings)
+
+  // Render table
+  const tbody = document.querySelector("#standingsTable tbody")
+  tbody.innerHTML = ""
+
+  standings.forEach((s, idx) => {
+    const row = document.createElement("tr")
+    row.innerHTML = `
+      <td>${idx + 1}</td>
+      <td>${s.name}</td>
+      <td>${s.team}</td>
+      <td>${s.points}</td>
+    `
+    tbody.appendChild(row)
+  })
+}
+
 // Run
 loadDrivers()
+loadStandings()
+
+document.getElementById("refreshStandings").addEventListener("click", loadStandings)
