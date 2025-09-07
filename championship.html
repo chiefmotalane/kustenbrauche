@@ -22,61 +22,26 @@
   </nav>
 
   <main class="container">
-    <!-- 1) Race overview / circuit card -->
-    <section class="race-overview card">
-      <div class="overview-left">
-        <h2 id="raceTitle">Italian Grand Prix</h2>
-        <ul class="meta">
+    <!-- Standings / Results -->
+    <section class="standings card">
+      <div class="standings-header">
+        <div class="season-brand">
+          <h2>Formula 1</h2>
+          <span>2025 Season</span>
+        </div>
+      </div>
+
+      <div class="race-meta">
+        <h3 id="raceTitle">Italian Grand Prix</h3>
+        <ul>
           <li id="raceDateFull">Sun, Sep 7, 15:00 SAST</li>
           <li id="raceVenue">Autodromo Nazionale Monza, Monza</li>
           <li id="raceLaps">53 Laps</li>
         </ul>
       </div>
-      <div class="overview-right">
-        <img id="circuitMap" src="images/map.jpg" alt="circuit map" />
-      </div>
-    </section>
 
-    <!-- 2) Teams (horizontal scroll) -->
-    <section class="teams card">
-      <div class="section-head">
-        <h3>Teams</h3>
-      </div>
-      <div id="teamsStrip" class="teams-strip" tabindex="0" aria-label="Teams strip"></div>
-    </section>
-
-    <!-- 3) Drivers list -->
-    <section class="drivers card">
-      <div class="section-head">
-        <h3>Drivers</h3>
-      </div>
-      <div id="drivers-list" class="drivers-grid">
-        <!-- Driver cards will be injected here by JS -->
-      </div>
-    </section>
-
-    <!-- 4) Drivers standings (points table) -->
-    <section class="standings card">
-      <div class="section-head">
-        <h3>Drivers Championship</h3>
-        <div class="controls">
-          <button id="refreshStandings">Refresh</button>
-        </div>
-      </div>
-      <div class="table-wrap">
-        <table id="standingsTable" class="table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Driver</th>
-              <th>Team</th>
-              <th>Points</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- standings rows go here -->
-          </tbody>
-        </table>
+      <div class="results-list" id="resultsList">
+        <!-- Results rows injected by JS -->
       </div>
     </section>
   </main>
