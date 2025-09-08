@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Car Detail — Kustenbrauche</title>
+
+<style>
+  /* ----------------------------
+     Reset + base
+     ---------------------------- */
+  :root{
+    --bg: #000;
+    --panel-dark: rgba(0,0,0,0.55);
+    --panel-dark-border: rgba(255,255,255,0.04);
+    --panel-light: rgba(255,255,255,0.85);
+    --panel-light-border: rgba(0,0,0,0.06);
+    --accent: #e60012;
+    --muted: #9aa0a6;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;background:var(--bg);color:#fff;font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+
+  /* ----------------------------
+     NAVBAR (transparent over banner)
+     ---------------------------- */
+  .navbar{
+    position:absolute; top:0; left:0; right:0;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 22px; z-index:1200;
+    transition:background .22s, color .22s;
+  }
+  .navbar .brand{font-weight:800; letter-spacing:1px; font-size:1.05rem; color: #000;}
+  .nav-links{display:flex;gap:18px;align-items:center;color: #000}
+  .nav-links a{padding:8px 10px; border-radius:8px; color:inherit; font-weight:600}
+  .nav-toggle{display:none;background:transparent;border:0;font-size:22px;color:black;cursor:pointer}
+
+  /* On scroll the navbar can get a subtle backdrop (script toggles .scrolled) */
+  .navbar.scrolled{background:rgba(0,0,0,0.55);backdrop-filter:blur(6px)}
+
+  /* Mobile: hamburger */
+  @media(max-width:900px){
+    .nav-links{display:none; position:fixed; right:12px; top:64px; background:rgba(0, 0, 0, 0.85); flex-direction:column; padding:12px;border-radius:10px}
+    .nav-links.open{display:flex}
+    .nav-toggle{display:block}
+  }
+
+  /* ----------------------------
+     Banner (image natural height)
+     - Use <header class="banner"><img ...></header>
+     - Navbar sits on top (absolute)
+     ---------------------------- */
+  .banner{position:relative; width:100%; background:#000}
+  .banner img.banner-img{width:100%;height:auto;display:block;object-fit:cover} /* natural height; no forced viewport height */
+  .banner .banner-overlay{
+    position:absolute; left:50%; transform:translateX(-50%); bottom:22px;
+    background:rgba(0,0,0,0.35); padding:18px 20px; border-radius:10px;
+    color:#fff; max-width:1100px; width:calc(100% - 48px); text-align:center;
+    backdrop-filter: blur(6px);
+  }
+  /* If banner is mostly light, JS will add .light-banner to body and invert overlay palette */
+  body.light-banner .banner .banner-overlay{
+    background: rgba(255,255,255,0.86);
+    color:#111;
+    border: 1px solid var(--panel-light-border);
+    backdrop-filter: blur(6px);
+  }
+
+  /* ----------------------------
+     Performance panel (glass, overlapping)
+     - toggles between dark/light style depending on banner brightness
+     ---------------------------- */
+  .performance-wrap{max-width:1200px;margin:-60px auto 28px;padding:0 22px;z-index:1100;position:relative}
+  .performance-panel{
+    display:flex; gap:20px; align-items:center; padding:18px; border-radius:14px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.6);
+    border: 1px solid var(--panel-dark-border);
+    background: var(--panel-dark); color:#fff;
+  }
+  body.light-banner .performance-panel{
+    background: var(--panel-); color:#000000; border:1px solid var(--panel-light-border);
+  }
+  .perf-left{flex:1;min-width:220px}
+  .perf-left h2{margin:0 0 8px;font-size:1.25rem;letter-spacing:.4px}
+  .perf-left p{margin:0;color:var(--muted);font-size:0.96rem}
+  .perf-ctas{margin-top:12px;display:flex;gap:10px}
+  .btn{display:inline-block;padding:8px 12px;border-radius:8px;font-weight:700;cursor:pointer}
+  .btn.primary{background:var(--accent);color:#fff;border:0}
+  .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.08);color:inherit}
+
+  .perf-grid{display:grid;grid-template-columns:repeat(3,minmax(120px,1fr));gap:12px;flex:0 0 580px}
+  .spec{padding:12px;border-radius:10px;text-align:center;border:1px solid rgba(255,255,255,0.03);background:rgba(255,255,255,0.02)}
+  body.light-banner .spec{background:rgba(0,0,0,0.02);border:1px solid rgba(0,0,0,0.06)}
+  .spec .label{font-size:0.8rem;color:var(--muted);margin-bottom:6px}
+  .spec .value{font-weight:800;font-size:1.05rem}
+
+  @media(max-width:920px){
+    .performance-panel{flex-direction:column;align-items:stretch}
+    .perf-grid{grid-template-columns:repeat(2,1fr);width:100%}
+    .performance-wrap{margin:-40px 18px 22px}
+  }
+  @media(max-width:520px){
+    .perf-grid{grid-template-columns:1fr}
+    .perf-left{text-align:center}
+    .perf-ctas{justify-content:center}
+  }
+
+  /* ----------------------------
+     Full-bleed images (no side gaps)
+     technique: break out of centered container to viewport edges
+     ---------------------------- */
+  .content {max-width:1200px;margin:0 auto;padding:20px}
+  .caption {max-width:1200px;margin:20px auto 10px;padding:0 22px;color:#ddd;font-size:0.98rem}
+  .full-bleed {
+    width:100vw; margin-left:calc(50% - 50vw); display:block;
+  }
+  .full-bleed img{width:100%;height:auto;display:block;object-fit:cover}
+
+  /* ----------------------------
+     Results / other sections (kept minimal)
+     ---------------------------- */
+  .section{max-width:1200px;margin:28px auto;padding:0 22px;color:#fff}
+  .section h3{margin-bottom:10px}
+
+  /* small helper for black text when banner is white (applies via .light-banner earlier) */
+  body.light-banner .dark-text { color:#111 !important }
+
+  /* small utility */
+  .muted{color:var(--muted)}
+</style>
+</head>
+<body>
+
+  <!-- NAVBAR (same code you can reuse across pages) -->
+  <header class="navbar" role="navigation">
+    <div class="brand">
+      <a class="brand" href="/home.html">ㄷㄷㄷ</a>
+    </div>
+
+    <!-- mobile toggle -->
+    <button class="nav-toggle" aria-label="Open menu" id="navToggle">☰</button>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="/home.html">Home</a>
+      <a href="/designs.html">Designs</a>
+      <a href="/championship.html">Championship</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <!-- BANNER (image natural height) -->
+  <header class="banner" id="banner">
+    <!-- replace 'images/car1-banner.jpg' with your banner image -->
+    <img class="banner-img" id="bannerImg" src="../images/f40banner.webp" alt="Car 1 banner - replace me">
+    
+  </header>
+
+  
+
+  <!-- MAIN CONTENT - captions and 4 full-bleed images (replace src) -->
+  <main class="content" id="mainContent">
+    <!-- caption before image 1 -->
+    <div class="caption">
+      <strong>Design statement</strong> — A quick one-line intro about this image and what it highlights.
+    </div>
+    <div class="full-bleed">
+      <img src="../images/f40logogside.webp" alt="Car 1 - exterior view">
+    </div>
+
+    <div class="caption">
+      <strong>Detail / Feature</strong> — Short explanation for the next image.
+    </div>
+    <div class="full-bleed">
+      <img src="../images/f40.webp" alt="Car 1 - detail view">
+    </div>
+
+    <div class="caption">
+      <strong>Interior</strong> — Short copy describing the interior shot.
+    </div>
+    <div class="full-bleed">
+      <img src="../images/f40bay.webp" alt="Car 1 - interior">
+    </div>
+
+    <div class="caption">
+      <strong>Track / Performance</strong> — Short copy for the final wide image.
+    </div>
+    <div class="full-bleed">
+      <img src="../images/f40ccc.webp" alt="Car 1 - track shot">
+    </div>
+
+    
+
+    <!-- Performance panel (overlaps banner) -->
+  <div class="performance-wrap">
+    <div class="performance-panel" id="perfPanel">
+      <div class="perf-left">
+        <h2 id="perfTitle">Performance</h2>
+        <p id="perfSub" class="">High-performance package: race-ready setup and premium materials.</p>
+        <div class="perf-ctas">
+          <a class="btn primary" href="#specs">Full specs</a>
+          <a class="btn ghost" href="#contact">Book viewing</a>
+        </div>
+      </div>
+
+      <div class="perf-grid" id="specs">
+        <!-- replace values below -->
+        <div class="spec">
+          <div class="label">Engine</div>
+          <div class="value" data-count="V8">V8 Twin-turbo</div>
+        </div>
+        <div class="spec">
+          <div class="label">Power</div>
+          <div class="value" data-count="700">700 HP</div>
+        </div>
+        <div class="spec">
+          <div class="label">Top Speed</div>
+          <div class="value" data-count="350">350 km/h</div>
+        </div>
+        <div class="spec">
+          <div class="label">0–100</div>
+          <div class="value" data-count="2.8">2.8 s</div>
+        </div>
+        <div class="spec">
+          <div class="label">Torque</div>
+          <div class="value" data-count="780">780 Nm</div>
+        </div>
+        <div class="spec">
+          <div class="label">Transmission</div>
+          <div class="value">7-speed DCT</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </main>
+
+<script>
+  /***********************
+    Mobile menu toggle
+  ***********************/
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+
+  /***********************
+    Navbar color toggle on scroll
+  ***********************/
+  const navbar = document.querySelector('.navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 24) navbar.classList.add('scrolled');
+    else navbar.classList.remove('scrolled');
+  });
+
+  /***********************
+    Banner brightness detection
+    - Samples a small central area of the banner image to determine if it's "light".
+    - If light → we add body.light-banner so panels use dark text and light background.
+  ***********************/
+  function detectBannerBrightness(imgEl) {
+    // If CORS or not loaded, fallback to dark style
+    if (!imgEl || !imgEl.complete) return;
+
+    try {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      const w = Math.min(imgEl.naturalWidth, 200);
+      const h = Math.min(imgEl.naturalHeight, 200);
+      canvas.width = w; canvas.height = h;
+      // draw center crop
+      const sx = Math.max(0, Math.floor((imgEl.naturalWidth - w) / 2));
+      const sy = Math.max(0, Math.floor((imgEl.naturalHeight - h) / 2));
+      ctx.drawImage(imgEl, sx, sy, w, h, 0, 0, w, h);
+      const data = ctx.getImageData(0, 0, w, h).data;
+      let rSum=0,gSum=0,bSum=0, count=0;
+      for (let i=0;i<data.length;i+=4){
+        rSum += data[i]; gSum += data[i+1]; bSum += data[i+2]; count++;
+      }
+      const r = rSum/count, g = gSum/count, b = bSum/count;
+      const brightness = 0.299*r + 0.587*g + 0.114*b;
+      // threshold approx 170-180 -> treat as light image
+      if (brightness > 170) document.body.classList.add('light-banner');
+      else document.body.classList.remove('light-banner');
+    } catch(e){
+      // If canvas is blocked due to cross-origin, fallback to checking avg via CSS luminance or skip
+      // default: keep dark style
+      document.body.classList.remove('light-banner');
+    }
+  }
+
+  const bannerImg = document.getElementById('bannerImg');
+  if (bannerImg) {
+    if (bannerImg.complete) detectBannerBrightness(bannerImg);
+    else bannerImg.addEventListener('load', () => detectBannerBrightness(bannerImg));
+  }
+
+  /***********************
+    Optional: animate numeric specs when visible
+  ***********************/
+  function animateCounts() {
+    const els = Array.from(document.querySelectorAll('.spec .value[data-count]'));
+    if (!els.length) return;
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const raw = el.getAttribute('data-count');
+        // If not a number, skip
+        const num = parseFloat(raw);
+        if (isNaN(num)) { io.unobserve(el); return; }
+        const start = 0;
+        const duration = 900;
+        const startAt = performance.now();
+        function tick(now){
+          const progress = Math.min((now - startAt)/duration, 1);
+          const value = start + (num - start) * progress;
+          el.textContent = Number.isInteger(num) ? Math.round(value) : value.toFixed(1);
+          if (progress < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+        io.unobserve(el);
+      });
+    }, {threshold: 0.35});
+    els.forEach(el => io.observe(el));
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    animateCounts();
+  });
+
+  /***********************
+    NOTES:
+    - Replace ../images/car1-banner.jpg and the 4 full-bleed images with your own.
+    - The script will sample the banner image brightness and switch the panel to light mode
+      (dark text on pale panel) if the banner is light — this addresses your "white banner => black text" request.
+    - Duplicate this single-file for each car page and change the image paths + text.
+  ***********************/
+</script>
+</body>
+</html>

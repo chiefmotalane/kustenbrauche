@@ -119,3 +119,36 @@ body {
   text-align: right;
   font-weight: bold;
 }
+.table-wrap {
+  width: 100%;                 /* fit to screen width */
+  overflow-x: auto;            /* enable horizontal scroll */
+  -webkit-overflow-scrolling: touch; /* smooth scroll on mobile */
+}
+
+.table-wrap::-webkit-scrollbar {
+  display: none;               /* hide scrollbar */
+}
+
+.table {
+  border-collapse: collapse;
+  min-width: 700px;            /* force table to be wide */
+  width: max-content;          /* let it size by content */
+}
+
+.table th,
+.table td {
+  padding: 10px 12px;
+  text-align: left;
+  white-space: nowrap;         /* stop names from wrapping */
+}
+.race-meta {
+  font-size: 0.95rem;
+  color: var(--muted);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.race-meta span {
+  white-space: nowrap; /* prevent breaking in middle of text */
+}
